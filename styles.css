@@ -1,9 +1,12 @@
 html {
     height: 100vh;
     min-width: 600px;
-    background-image: linear-gradient(180deg, #FFFFFF,#0c2350);
+    /*background-image: linear-gradient(180deg, #FFFFFF,#0c2350);*/
+    background-image: url(/images/acqrnfop31471.jpg);
+    background-color: rgb(27, 27, 27);
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
+    resize:both;
 }
 
 .container {
@@ -87,34 +90,35 @@ i {
     margin-top:10px;
     padding:0px;
     width: 100%;
-    border-radius: 0px;
-    background-color: #ddd;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.459);
 }
-    
-#progressBarTotal {
+
+#progressBarCurrent {
     width: 0%;
     height: 10px;
-    background-color: #3d59d3;
-    border-radius: 0px;
+    background-color: #ffbba6;
+    border-top-left-radius: 15px;
     text-align: center;
     line-height: 32px;
     color: black;
 }
-#progressBarCurrent {
+#progressBarTotal {
     width: 0%;
-    height: 5px;
-    background-color: #798dfc;
-    border-radius: 0px;
+    height: 10px;
+    background-color: #ec715b;
+    border-bottom-left-radius: 10px;
     text-align: center;
     line-height: 32px;
     color: black;
 }
 
-#percentageTotal {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-}
 #percentageCurrent {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
+    color: rgb(255, 255, 255);
+}
+#percentageTotal {
+    text-align: center;
+    color: rgb(255, 255, 255);
 }
