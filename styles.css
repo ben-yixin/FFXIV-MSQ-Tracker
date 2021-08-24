@@ -1,0 +1,120 @@
+html {
+    height: 100vh;
+    min-width: 600px;
+    background-image: linear-gradient(180deg, #FFFFFF,#0c2350);
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.container {
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    font-family: 'Raleway', sans-serif;
+}
+.headline{
+    font-size: 20px;
+}
+
+.logo {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    max-width: 500px;
+    padding: 1.5rem 0;
+    align-items: center;
+}
+
+.main {
+    padding: 20px;
+}
+
+form {
+    background-color: #FFFFFF;
+    padding-left: 8px;
+    border-radius: 5px;
+    display: flex;
+}
+
+input[type="text"] {
+    height: 40px;
+    outline: 0;
+    border: none;
+    font-size: 1.5rem;
+    font-family: 'Raleway', sans-serif;
+    color: #595959;
+    flex-grow: 1;
+}
+
+button {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    display:flex;
+}
+
+button:hover {
+    cursor: pointer;
+   /* background-color: lightcoral;*/
+}
+.icon{
+    width:30px;
+    padding-bottom: 5px;
+    padding-top: 3px;
+}
+
+ul {
+    padding-left: 0px;
+    list-style: none;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgrey;
+    padding: 15px 0;
+    font-size: 1rem;
+    color: #595959;
+}
+
+i {
+    pointer-events: none;
+}
+
+#progressStatus {
+    margin-top:10px;
+    padding:0px;
+    width: 100%;
+    border-radius: 0px;
+    background-color: #ddd;
+}
+    
+#progressBarTotal {
+    width: 0%;
+    height: 10px;
+    background-color: #3d59d3;
+    border-radius: 0px;
+    text-align: center;
+    line-height: 32px;
+    color: black;
+}
+#progressBarCurrent {
+    width: 0%;
+    height: 5px;
+    background-color: #798dfc;
+    border-radius: 0px;
+    text-align: center;
+    line-height: 32px;
+    color: black;
+}
+
+#percentageTotal {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+#percentageCurrent {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
