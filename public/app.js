@@ -37,7 +37,7 @@ function getProgress(index) {
     var widthTotal = 0;
     var percentCurrent = percentage(index,quest.length-1);
     var percentTotal = percentage(index,quest.length-1);
-    setInterval(sceneCurrent,10);
+    //setInterval(sceneCurrent,10);
     setInterval(sceneTotal, 10);
     //Check if user selected the first quest
     if(percentTotal == 0){
