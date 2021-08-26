@@ -27,8 +27,6 @@ fetch('/quests/questChains.json')
             ul.appendChild(li);
         });
     })
-
-
 function getProgress(index) {
     var currentArc;
     var barCurrent = document.getElementById("progressBarCurrent");
@@ -37,15 +35,17 @@ function getProgress(index) {
     var widthTotal = 0;
     var percentCurrent = percentage(index,quest.length-1);
     var percentTotal = percentage(index,quest.length-1);
-    //setInterval(sceneCurrent,10);
-    setInterval(sceneTotal, 10);
+    //var currentInterval = setInterval(sceneCurrent,5);
+    var totalInterval = setInterval(sceneTotal, 5);
     //Check if user selected the first quest
     if(percentTotal == 0){
         barTotal.style.width = 0+'%';
-        barCurrent.style.width = 0+'%'
+        //barCurrent.style.width = 0+'%'
         document.getElementById("questTitle").innerHTML = `${quest[index]}`
-        document.getElementById("percentageTotal").innerHTML = `${percentTotal}% through the MSQ!`;
+        document.getElementById("percentageTotal").innerHTML = `0% through the MSQ!`;
+        clearInterval(totalInterval);
     }
+
     function sceneCurrent(){
         if(widthCurrent < percentCurrent){
             widthCurrent++;
@@ -53,7 +53,7 @@ function getProgress(index) {
             if(widthCurrent == Math.round(percentCurrent)){ 
                 document.getElementById("questTitle").innerHTML = `${quest[index]}`
                 document.getElementById("percentageCurrent").innerHTML = `You are ${percentCurrent}% through {currentArc}!`;
-                quest[index]
+                clearInterval(currentInterval);
             }
         }
     }
@@ -64,6 +64,7 @@ function getProgress(index) {
             if(widthTotal == Math.round(percentTotal) || widthTotal == Math.ceil(percentTotal)){
                 document.getElementById("questTitle").innerHTML = `${quest[index]}`
                 document.getElementById("percentageTotal").innerHTML = `${percentTotal}% through the MSQ!`;
+                clearInterval(totalInterval);
             } 
         }
     }
@@ -114,7 +115,6 @@ function enter(){
     //search quests for index of item
     for(i = 0;i<quest.length;i++){
         if(quest[i].toUpperCase() == input){
-            console.log(`${input} =${quest[i]}`)
             getProgress(i)
         }
     }
