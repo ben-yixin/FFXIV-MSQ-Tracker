@@ -1,9 +1,3 @@
-const totalMSQ = 1000;
-const ARR = 5;
-const HW = 5;
-const SB = 5;
-const ShB = 5;
-const EW = 5;
 var quest = [];
 fetch('./Quests/questChains.json')
     .then(response => response.json())
