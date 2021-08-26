@@ -69,9 +69,11 @@ button:hover {
 }
 
 ul {
+    height:700px; width:100%;
     padding-left: 0px;
-    list-style:none;
-    
+    list-style:none; 
+    overflow:hidden;
+    overflow-y: scroll;
 }
 
 li {
@@ -82,31 +84,42 @@ li {
     background-repeat: no-repeat;
     background-color: rgba(0, 0, 0, 0.514);
     display: flex;
-    border-style: dashed;
-    border: 0px solid rgb(255, 255, 255);
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
     padding: 8px 20px;
     font-size: 1rem;
     color: #e2e2e2;
+}
+
+li:hover{
+    cursor:pointer;
 }
 
 i {
     pointer-events: none;
 }
 
+#questTitle{
+    margin-top: 20px;
+    color: rgb(226, 226, 226);
+    text-align: center;
+    background-color: rgba(59, 59, 59, 0.575);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
 #progressStatus {
-    margin-top:10px;
+    margin-top:3px;
     padding:0px;
     width: 100%;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.459);
+    /*border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;*/
+    background-color: rgba(255, 255, 255, 0.397);
 }
 
 #progressBarCurrent {
     width: 0%;
-    height: 10px;
-    background-color: #ffbba6;
-    border-top-left-radius: 15px;
+    height: 5px;
+    background-color: #ff9673;
+    /*border-top-left-radius: 15px;*/
     text-align: center;
     line-height: 32px;
     color: black;
@@ -114,18 +127,45 @@ i {
 #progressBarTotal {
     width: 0%;
     height: 10px;
-    background-color: #ec715b;
-    border-bottom-left-radius: 10px;
+    background-color: #1768ffa9;
+    /*border-bottom-left-radius: 10px;*/
     text-align: center;
     line-height: 32px;
     color: black;
 }
 
 #percentageCurrent {
+    margin-top: 1px;
     text-align: center;
+    background-color: rgba(59, 59, 59, 0.575);
     color: rgb(255, 255, 255);
+   /* border-top-left-radius: 10px;
+    border-top-right-radius: 10px;*/
 }
 #percentageTotal {
     text-align: center;
-    color: rgb(255, 255, 255);
+    background-color: rgba(59, 59, 59, 0.575);
+    color: rgb(223, 223, 223);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* width */
+::-webkit-scrollbar {
+width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+background: #ffffff6b;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: rgb(109, 109, 109);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: rgb(65, 65, 65);
 }
