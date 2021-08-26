@@ -1,5 +1,5 @@
 var quest = [];
-fetch('quests\questChains.json')
+fetch('/quests/questChains.json')
     .then(response => response.json())
     .then(data=>{
         //Fill quest variable with all quests in the file
