@@ -108,6 +108,7 @@ function search() {
 //Clicking on item will autocomplete the search bar
 function select(input){
     document.getElementById("myInput").value = input.innerText;
+    getProgress(quest.indexOf(input.innerText))
 }
 //Sending the form will run getProgress
 function enter(){
