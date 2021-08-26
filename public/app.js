@@ -110,8 +110,13 @@ function select(input){
 }
 //Sending the form will run getProgress
 function enter(){
-    var input = document.getElementById("myInput").value;
+    var input = document.getElementById("myInput").value.toUpperCase();
     //search quests for index of item
-    var index = quest.indexOf(input);
-    getProgress(index)
+    for(i = 0;i<quest.length;i++){
+        if(quest[i].toUpperCase() == input){
+            console.log(`${input} =${quest[i]}`)
+            getProgress(i)
+        }
+    }
+   // getProgress(index)
 }
