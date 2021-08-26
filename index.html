@@ -16,21 +16,23 @@
             </a>
         </header>
         <div class="main">
-            <form id="searchBar">
-                <input type="text" placeholder="Search MSQ...">
-                <button type="submit"><img class="icon" src="images/FFXIV_Logo_Red.png"></i></button>
+            <form id="searchBar" onsubmit="event.preventDefault(); enter(this)">
+                <input id="myInput" type="text"  onkeyup="search()" placeholder="Search MSQ..." autocomplete="off">
+                <button type="button" onclick="enter()"><img class="icon" src="images/FFXIV_Logo_Red.png"></i></button>
             </form>
             
-            <div id="progressStatus">
-                <div id="progressBarCurrent"></div>
-                <div id="progressBarTotal"></div>
-            </div>
-            
-            <div class = "percent"></div>
+           
+            <div id = "percent"></div>
+                <div id="questTitle"></div>
                 <div id="percentageCurrent"></div>
                 <div id="percentageTotal"></div>
-                <button onclick="test()">TEST</button>
+                
+                <div id="progressStatus">
+                     <div id="progressBarCurrent"></div>
+                     <div id="progressBarTotal"></div>
+                 </div>
             </div>
+           
             <div id="questList"></div>
            
 
