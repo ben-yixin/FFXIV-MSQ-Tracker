@@ -44,8 +44,22 @@ fetch('/quests/questChains.json')
             ul.appendChild(li);
         });
     })
-   
 
+window.addEventListener('load', function() {
+    onStart()
+})
+function onStart(){
+    var width = 100;
+    var loadInterval= setInterval(deload,10);
+    function deload(){     
+        var bar = document.getElementById("progressBarTotal");
+        width--;
+        bar.style.width = width+'%';
+        if(width == 0 ){
+            clearInterval(loadInterval);
+        } 
+}
+}
 function getProgress(index) {
     var currentArc;
     var arcName;
