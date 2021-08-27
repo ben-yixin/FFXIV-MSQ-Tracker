@@ -1,13 +1,30 @@
-var quest = [];
+
+var quest, aRealmReborn, heavensWard, stormBlood, shadowBringers,endWalker;
+var arrLength, hwLength, sbLength, shbLength, ewLength;
 fetch('/quests/questChains.json')
     .then(response => response.json())
     .then(data=>{
-        //Fill quest variable with all quests in the file
+        //Fill quest variables and length variables
+        aRealmReborn = data.realmReborn[1];
+        arrLength = aRealmReborn.length;
+
+        heavensWard = data.heavensWard;
+        hwLength = heavensWard.length;
+
+        stormBlood = data.stormBlood;
+        sbLength = stormBlood.length;
+
+        shadowBringers = data.shadowBringers;
+        shbLength = shadowBringers.length;
+
+        endWalker = data.endWalker;
+        ewLength = endWalker.length;
+
         quest = data.realmReborn[1]
-        .concat(data.heavensWard)
-        .concat(data.stormBlood)
-        .concat(data.shadowBringers)
-        .concat(data.endWalker);
+        .concat(heavensWard)
+        .concat(stormBlood)
+        .concat(shadowBringers)
+        .concat(endWalker);
         //create an unordered list and href
         ul = document.createElement('ul');
         a = document.createElement('a');
@@ -27,32 +44,56 @@ fetch('/quests/questChains.json')
             ul.appendChild(li);
         });
     })
-function getProgress(index) {
+   
+
+    function getProgress(index) {
     var currentArc;
+    var arcName;
+    var percentCurrent;
+    //Spaghetti code
+    if(index <= arrLength-1){
+        currentArc = aRealmReborn;
+        arcName = "A Realm Reborn";
+        percentCurrent = percentage(index,arrLength-1);
+    }else if(index > arrLength-1 && index < hwLength+arrLength){
+        currentArc = heavensWard;
+        arcName = "Heavens Ward";
+        percentCurrent = percentage(index%(arrLength-1),hwLength)
+    } else if(index > arrLength+hwLength-1 && index < sbLength + hwLength +arrLength){
+        currentArc = stormBlood;
+        arcName = "Storm Blood";
+        percentCurrent = percentage(index%(arrLength+hwLength-1),sbLength)
+    } else if(index > arrLength+hwLength+sbLength-1 && index < shbLength + sbLength + hwLength +arrLength){
+        currentArc = shadowBringers;
+        arcName = "Shadow Bringers";
+        percentCurrent = percentage(index%(arrLength+hwLength+sbLength-1),shbLength)
+    }
     var barCurrent = document.getElementById("progressBarCurrent");
     var barTotal = document.getElementById("progressBarTotal");
     var widthCurrent = 0;
     var widthTotal = 0;
-    var percentCurrent = percentage(index,quest.length-1);
     var percentTotal = percentage(index,quest.length-1);
-    //var currentInterval = setInterval(sceneCurrent,5);
-    var totalInterval = setInterval(sceneTotal, 5);
+    var currentInterval = setInterval(sceneCurrent,7);
+    var totalInterval = setInterval(sceneTotal, 10);
+   
     //Check if user selected the first quest
     if(percentTotal == 0){
         barTotal.style.width = 0+'%';
-        //barCurrent.style.width = 0+'%'
+        barCurrent.style.width = 0+'%'
         document.getElementById("questTitle").innerHTML = `${quest[index]}`
+        document.getElementById("percentageCurrent").innerHTML = `You are ${percentCurrent}% through ${arcName}!`;
         document.getElementById("percentageTotal").innerHTML = `0% through the MSQ!`;
         clearInterval(totalInterval);
+        clearInterval(currentInterval);
     }
 
     function sceneCurrent(){
         if(widthCurrent < percentCurrent){
             widthCurrent++;
             barCurrent.style.width = widthCurrent+'%';
-            if(widthCurrent == Math.round(percentCurrent)){ 
+            if(widthCurrent == Math.round(percentCurrent) || widthCurrent == Math.ceil(percentCurrent)){ 
                 document.getElementById("questTitle").innerHTML = `${quest[index]}`
-                document.getElementById("percentageCurrent").innerHTML = `You are ${percentCurrent}% through {currentArc}!`;
+                document.getElementById("percentageCurrent").innerHTML = `You are ${percentCurrent}% through ${arcName}!`;
                 clearInterval(currentInterval);
             }
         }
@@ -93,15 +134,12 @@ function search() {
   
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < li.length; i++) {
-      //a = li[i].getElementsByTagName("li")[0];
-      //txtValue = a.textContent || a.innerText;
-     
-      txtValue = li[i].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        li[i].style.display = "";
-      } else {
-        li[i].style.display = "none";
-      }
+        txtValue = li[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
     }
 }
 
