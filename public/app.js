@@ -88,7 +88,7 @@ fetch('/quests/questChains.json')
         barTotal.style.width = 0+'%';
         barCurrent.style.width = 0+'%'
         document.getElementById("questTitle").innerHTML = `${quest[index]}`
-        document.getElementById("percentageCurrent").innerHTML = `${percentCurrent}% through ${arcName}!${progressCurrent}`;
+        document.getElementById("percentageCurrent").innerHTML = `${percentCurrent}% through <span class="currentArcColor">${arcName}</span>! ${progressCurrent}`;
         document.getElementById("percentageTotal").innerHTML = `0% through the MSQ!`;
         clearInterval(totalInterval);
         clearInterval(currentInterval);
