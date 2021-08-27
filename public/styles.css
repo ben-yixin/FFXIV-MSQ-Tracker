@@ -101,7 +101,7 @@ i {
 
 #questTitle{
     margin-top: 20px;
-    color: rgb(226, 226, 226);
+    color: rgb(238, 238, 238);
     text-align: center;
     background-color: rgba(59, 59, 59, 0.575);
     border-top-left-radius: 10px;
@@ -141,14 +141,14 @@ i {
     margin-top: 1px;
     text-align: center;
     background-color: rgba(59, 59, 59, 0.575);
-    color: rgb(255, 255, 255);
+    color: rgb(238, 238, 238);
    /* border-top-left-radius: 10px;
     border-top-right-radius: 10px;*/
 }
 #percentageTotal {
     text-align: center;
     background-color: rgba(59, 59, 59, 0.575);
-    color: rgb(223, 223, 223);
+    color: rgb(238, 238, 238);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
