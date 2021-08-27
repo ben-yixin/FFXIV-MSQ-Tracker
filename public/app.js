@@ -5,7 +5,7 @@ fetch('/quests/questChains.json')
     .then(response => response.json())
     .then(data=>{
         //Fill quest variables and length variables
-        aRealmReborn = data.realmReborn[1];
+        aRealmReborn = data.realmReborn;
         arrLength = aRealmReborn.length;
 
         heavensWard = data.heavensWard;
@@ -20,7 +20,7 @@ fetch('/quests/questChains.json')
         endWalker = data.endWalker;
         ewLength = endWalker.length;
 
-        quest = data.realmReborn[1]
+        quest = data.realmReborn
         .concat(heavensWard)
         .concat(stormBlood)
         .concat(shadowBringers)
