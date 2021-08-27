@@ -154,6 +154,10 @@ i {
     border-bottom-right-radius: 10px;
 }
 
+.currentArcColor{
+    color:rgb(255, 83, 83);
+}
+
 /* width */
 ::-webkit-scrollbar {
 width: 10px;
