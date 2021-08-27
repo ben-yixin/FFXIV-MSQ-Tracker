@@ -74,10 +74,10 @@ button:hover {
 }
 
 ul {
-    height:700px; width:100%;
+    height:500px; width:100%;
     padding-left: 0px;
     list-style:none; 
-    overflow:hidden;
+    overflow:auto;
     overflow-y: scroll;
 }
 
@@ -135,9 +135,9 @@ i {
 }
 #progressBarTotal {
     width: 0%;
-    height: 10px;
+    height: 15px;
     background-color: rgba(219, 58, 58, 0.664);
-    background-image: linear-gradient(90deg,rgba(219, 58, 58, 0.507),rgba(177, 52, 52, 0.507));
+    background-image: linear-gradient(90deg,rgba(255, 170, 170, 0.644),rgba(255, 88, 88, 0.411));
     /*border-bottom-left-radius: 10px;*/
     text-align: center;
     line-height: 32px;
@@ -164,9 +164,10 @@ i {
 .currentArcColor{
     color:rgb(255, 183, 116);
 }
+/*
 .msqColor{
     color: rgb(219, 58, 58);
-}
+}*/
 
 /*Markers do not adjust any options in here except color*/
 #markArr,#markHw,#markSb,#markShb{
