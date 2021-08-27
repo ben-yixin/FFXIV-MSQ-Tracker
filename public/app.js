@@ -81,7 +81,7 @@ fetch('/quests/questChains.json')
         barTotal.style.width = 0+'%';
         barCurrent.style.width = 0+'%'
         document.getElementById("questTitle").innerHTML = `${quest[index]}`
-        document.getElementById("percentageCurrent").innerHTML = `You are ${percentCurrent}% through ${arcName}!`;
+        document.getElementById("percentageCurrent").innerHTML = `${percentCurrent}% through ${arcName}!`;
         document.getElementById("percentageTotal").innerHTML = `0% through the MSQ!`;
         clearInterval(totalInterval);
         clearInterval(currentInterval);
@@ -93,7 +93,7 @@ fetch('/quests/questChains.json')
             barCurrent.style.width = widthCurrent+'%';
             if(widthCurrent == Math.round(percentCurrent) || widthCurrent == Math.ceil(percentCurrent)){ 
                 document.getElementById("questTitle").innerHTML = `${quest[index]}`
-                document.getElementById("percentageCurrent").innerHTML = `You are ${percentCurrent}% through ${arcName}!`;
+                document.getElementById("percentageCurrent").innerHTML = `${percentCurrent}% through ${arcName}!`;
                 clearInterval(currentInterval);
             }
         }
