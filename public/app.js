@@ -52,6 +52,7 @@ fetch('/quests/questChains.json')
     var percentCurrent;
     var progressCurrent;
     //Spaghetti code
+    //Check progress of quest of specific story
     if(index <= arrLength-1){
         currentArc = aRealmReborn;
         arcName = "A Realm Reborn";
@@ -73,13 +74,14 @@ fetch('/quests/questChains.json')
         percentCurrent = percentage(index%(arrLength+hwLength+sbLength-1),shbLength)
         progressCurrent = `${index%(arrLength+hwLength+sbLength)+1}/${shbLength}`
     }
+    //Progress Bar
     var barCurrent = document.getElementById("progressBarCurrent");
     var barTotal = document.getElementById("progressBarTotal");
     var widthCurrent = 0;
     var widthTotal = 0;
     var percentTotal = percentage(index,quest.length-1);
-    var currentInterval = setInterval(sceneCurrent,7);
-    var totalInterval = setInterval(sceneTotal, 10);
+    var currentInterval = setInterval(sceneCurrent,1);
+    var totalInterval = setInterval(sceneTotal, 1);
    
     //Check if user selected the first quest
     if(percentTotal == 0){
