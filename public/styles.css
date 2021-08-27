@@ -120,13 +120,14 @@ i {
     /*border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;*/
     background-color: rgba(255, 255, 255, 0.397);
+    position:relative;
 }
 
 #progressBarCurrent {
     width: 0%;
-    height: 5px;
-    background-color: #ff9673;
-    background-image: linear-gradient(90deg,rgb(129, 15, 15),rgba(134, 6, 6, 0.534));
+    height: 4px;
+    background-color: rgba(253, 165, 83, 0.849);
+    background-image: linear-gradient(90deg,rgb(255, 183, 116),rgba(255, 208, 78, 0.705));
     /*border-top-left-radius: 15px;*/
     text-align: center;
     line-height: 32px;
@@ -135,12 +136,13 @@ i {
 #progressBarTotal {
     width: 0%;
     height: 10px;
-    background-color: #c70000b2;
-    background-image: linear-gradient(90deg,rgb(201, 40, 40),rgba(255, 144, 144, 0.507));
+    background-color: rgba(219, 58, 58, 0.664);
+    background-image: linear-gradient(90deg,rgba(219, 58, 58, 0.507),rgba(177, 52, 52, 0.507));
     /*border-bottom-left-radius: 10px;*/
     text-align: center;
     line-height: 32px;
     color: black;
+    
 }
 
 #percentageCurrent {
@@ -160,7 +162,48 @@ i {
 }
 
 .currentArcColor{
-    color:rgb(255, 83, 83);
+    color:rgb(255, 183, 116);
+}
+.msqColor{
+    color: rgb(219, 58, 58);
+}
+
+/*Markers do not adjust any options in here except color*/
+#markArr,#markHw,#markSb,#markShb{
+    color:rgb(0, 0, 0);
+    font-size: 11px;
+    position:absolute;
+    margin-top:-3px; 
+}
+#markArr{
+    /*left: 33.7%; NO LABEL*/
+    
+    left: 21.4%;
+    /*color:rgb(204, 52, 52);*/
+}
+#markHw{
+    /*left: 53.7%; NO LABEL*/
+    left: 42.7%;
+    /*color:rgb(37, 56, 99);*/
+}
+#markSb{
+    /*left: 77.7%; NO LABEL*/
+    left: 68.2%;
+    /*color:rgb(168, 146, 18);*/
+}
+#markShb{
+    left: 86.7%;
+   /* color:black;*/
+}
+
+#markArr:after,#markHw:after,#markSb:after{
+    font-size: 15.5px;
+    color:black;
+    content: "|";
+}
+#markShb:after{
+    font-size:15.5px;
+    content:"";
 }
 
 /* width */

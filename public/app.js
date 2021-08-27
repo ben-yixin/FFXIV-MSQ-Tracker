@@ -89,7 +89,7 @@ fetch('/quests/questChains.json')
         barCurrent.style.width = 0+'%'
         document.getElementById("questTitle").innerHTML = `${quest[index]}`
         document.getElementById("percentageCurrent").innerHTML = `${percentCurrent}% through <span class="currentArcColor">${arcName}</span>! ${progressCurrent}`;
-        document.getElementById("percentageTotal").innerHTML = `0% through the MSQ!`;
+        document.getElementById("percentageTotal").innerHTML = `0% through the <span class="msqColor">MSQ</span>!  ${index+1}/${quest.length}`;
         clearInterval(totalInterval);
         clearInterval(currentInterval);
     }
@@ -111,7 +111,7 @@ fetch('/quests/questChains.json')
             barTotal.style.width = widthTotal+'%';
             if(widthTotal == Math.round(percentTotal) || widthTotal == Math.ceil(percentTotal)){
                 document.getElementById("questTitle").innerHTML = `${quest[index]}`
-                document.getElementById("percentageTotal").innerHTML = `${percentTotal}% through the MSQ!`;
+                document.getElementById("percentageTotal").innerHTML = `${percentTotal}% through the <span class="msqColor">MSQ</span>! ${index+1}/${quest.length}`;
                 clearInterval(totalInterval);
             } 
         }
@@ -129,7 +129,7 @@ function scene(width,percent,element,id){
 }
 */
 function percentage(x,y){
-    return ((x * 100)/y).toFixed(2);
+    return (((x+1) * 100)/(y+1)).toFixed(2);
 }
 function search() {
     // Declare variables
