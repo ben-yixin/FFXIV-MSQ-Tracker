@@ -1,6 +1,6 @@
-
 var quest, aRealmReborn, heavensWard, stormBlood, shadowBringers,endWalker;
 var arrLength, hwLength, sbLength, shbLength, ewLength;
+const punc = new RegExp(/[^\s\w]/g);
 fetch('/quests/questChains.json')
     .then(response => response.json())
     .then(data=>{
@@ -46,7 +46,7 @@ fetch('/quests/questChains.json')
     })
    
 
-    function getProgress(index) {
+function getProgress(index) {
     var currentArc;
     var arcName;
     var percentCurrent;
@@ -80,18 +80,20 @@ fetch('/quests/questChains.json')
     var widthCurrent = 0;
     var widthTotal = 0;
     var percentTotal = percentage(index,quest.length-1);
-    var currentInterval = setInterval(sceneCurrent,1);
-    var totalInterval = setInterval(sceneTotal, 1);
-   
+    var currentInterval = setInterval(sceneCurrent,0);
+    var totalInterval = setInterval(sceneTotal, 0);
+    display();
     //Check if user selected the first quest
     if(percentTotal == 0){
         barTotal.style.width = 0+'%';
         barCurrent.style.width = 0+'%'
-        document.getElementById("questTitle").innerHTML = `${quest[index]}`
-        document.getElementById("percentageCurrent").innerHTML = `${percentCurrent}% through <span class="currentArcColor">${arcName}</span>! ${progressCurrent}`;
-        document.getElementById("percentageTotal").innerHTML = `0% through the <span class="msqColor">MSQ</span>!  ${index+1}/${quest.length}`;
         clearInterval(totalInterval);
         clearInterval(currentInterval);
+    }
+    function display(){
+        document.getElementById("questTitle").innerHTML = `${quest[index]}`
+        document.getElementById("percentageCurrent").innerHTML = `${percentCurrent}% through <span class="currentArcColor">${arcName}</span>! ${progressCurrent}`;
+        document.getElementById("percentageTotal").innerHTML = `${percentTotal}% through the <span class="msqColor">MSQ</span>! ${index+1}/${quest.length}`;
     }
 
     function sceneCurrent(){
@@ -99,8 +101,6 @@ fetch('/quests/questChains.json')
             widthCurrent++;
             barCurrent.style.width = widthCurrent+'%';
             if(widthCurrent == Math.round(percentCurrent) || widthCurrent == Math.ceil(percentCurrent)){ 
-                document.getElementById("questTitle").innerHTML = `${quest[index]}`
-                document.getElementById("percentageCurrent").innerHTML = `${percentCurrent}% through <span class="currentArcColor">${arcName}</span>! ${progressCurrent}`;
                 clearInterval(currentInterval);
             }
         }
@@ -110,39 +110,28 @@ fetch('/quests/questChains.json')
             widthTotal++;
             barTotal.style.width = widthTotal+'%';
             if(widthTotal == Math.round(percentTotal) || widthTotal == Math.ceil(percentTotal)){
-                document.getElementById("questTitle").innerHTML = `${quest[index]}`
-                document.getElementById("percentageTotal").innerHTML = `${percentTotal}% through the <span class="msqColor">MSQ</span>! ${index+1}/${quest.length}`;
                 clearInterval(totalInterval);
             } 
         }
     }
 }
-/*
-function scene(width,percent,element,id){
-    if(width < percent){
-        width++;
-        element.style.width = width+'%';
-        if(width == Math.round(percent)){
-           check = true;
-        }
-    }
-}
-*/
+
+
 function percentage(x,y){
     return (((x+1) * 100)/(y+1)).toFixed(2);
 }
 function search() {
-    // Declare variables
-    var input, filter, ul, li, a, i, txtValue;
+    var input, filter, ul, li, i, txtValue;
     input = document.getElementById('myInput');
-    filter = input.value.toUpperCase();
+    filter = input.value;
+    var filterRe = new RegExp(filter,"i")
     ul = document.getElementById("questList");
     li = ul.getElementsByTagName('li');
   
-    // Loop through all list items, and hide those who don't match the search query
+    // Loop through all list items, and hide those that don't match the search query
     for (i = 0; i < li.length; i++) {
-        txtValue = li[i].innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        txtValue = li[i].innerText;  
+        if (txtValue.replace(punc,'').match(filterRe)) {
             li[i].style.display = "";
         } else {
             li[i].style.display = "none";
@@ -150,19 +139,21 @@ function search() {
     }
 }
 
-//Clicking on item will autocomplete the search bar
+//Clicking on item will autocomplete the search bar and run getProgress
 function select(input){
     document.getElementById("myInput").value = input.innerText;
     getProgress(quest.indexOf(input.innerText))
 }
 //Sending the form will run getProgress
 function enter(){
-    var input = document.getElementById("myInput").value.toUpperCase();
-    //search quests for index of item
+    var input = document.getElementById("myInput").value;
+    var re = new RegExp(input,"i");
+    //Search for matching quest
     for(i = 0;i<quest.length;i++){
-        if(quest[i].toUpperCase() == input){
+        //ignore puncuation match and if string is not empty or full of spaces
+        if(quest[i].replace(punc,'').match(re) && !(input.replace(/\s/g,"") == "")){
+            document.getElementById("myInput").value = quest[i];
             getProgress(i)
         }
     }
-   // getProgress(index)
 }
