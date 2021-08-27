@@ -50,23 +50,28 @@ fetch('/quests/questChains.json')
     var currentArc;
     var arcName;
     var percentCurrent;
+    var progressCurrent;
     //Spaghetti code
     if(index <= arrLength-1){
         currentArc = aRealmReborn;
         arcName = "A Realm Reborn";
         percentCurrent = percentage(index,arrLength-1);
+        progressCurrent = `${index+1}/${arrLength}`
     }else if(index > arrLength-1 && index < hwLength+arrLength){
         currentArc = heavensWard;
         arcName = "Heavens Ward";
         percentCurrent = percentage(index%(arrLength-1),hwLength)
+        progressCurrent = `${index%arrLength+1}/${hwLength}`
     } else if(index > arrLength+hwLength-1 && index < sbLength + hwLength +arrLength){
         currentArc = stormBlood;
         arcName = "Storm Blood";
         percentCurrent = percentage(index%(arrLength+hwLength-1),sbLength)
+        progressCurrent = `${index%(arrLength+hwLength)+1}/${sbLength}`
     } else if(index > arrLength+hwLength+sbLength-1 && index < shbLength + sbLength + hwLength +arrLength){
         currentArc = shadowBringers;
         arcName = "Shadow Bringers";
         percentCurrent = percentage(index%(arrLength+hwLength+sbLength-1),shbLength)
+        progressCurrent = `${index%(arrLength+hwLength+sbLength)+1}/${shbLength}`
     }
     var barCurrent = document.getElementById("progressBarCurrent");
     var barTotal = document.getElementById("progressBarTotal");
@@ -81,7 +86,7 @@ fetch('/quests/questChains.json')
         barTotal.style.width = 0+'%';
         barCurrent.style.width = 0+'%'
         document.getElementById("questTitle").innerHTML = `${quest[index]}`
-        document.getElementById("percentageCurrent").innerHTML = `${percentCurrent}% through ${arcName}!`;
+        document.getElementById("percentageCurrent").innerHTML = `${percentCurrent}% through ${arcName}!${progressCurrent}`;
         document.getElementById("percentageTotal").innerHTML = `0% through the MSQ!`;
         clearInterval(totalInterval);
         clearInterval(currentInterval);
@@ -93,7 +98,7 @@ fetch('/quests/questChains.json')
             barCurrent.style.width = widthCurrent+'%';
             if(widthCurrent == Math.round(percentCurrent) || widthCurrent == Math.ceil(percentCurrent)){ 
                 document.getElementById("questTitle").innerHTML = `${quest[index]}`
-                document.getElementById("percentageCurrent").innerHTML = `${percentCurrent}% through ${arcName}!`;
+                document.getElementById("percentageCurrent").innerHTML = `${percentCurrent}% through <span class="currentArcColor">${arcName}</span>! ${progressCurrent}`;
                 clearInterval(currentInterval);
             }
         }
