@@ -128,6 +128,7 @@ function getProgress(index) {
 }
 
 function percentage(x,y){return (((x+1) * 100)/(y+1)).toFixed(1);}
+
 function search() {
     var input, filter, ul, li, i, txtValue;
     input = document.getElementById('myInput');
@@ -160,7 +161,6 @@ function enter(){
     //Check if input empty
     if(!(input.replace(/\s/g,"") == "")){
         for(i = 0;i<quest.length;i++){
-            console.log(input)
             //Search ignore puncuation
             if(quest[i].replace(punc,'').match(re)){
                 //Autocomplete search bar
