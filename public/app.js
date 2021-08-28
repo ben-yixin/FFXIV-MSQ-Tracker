@@ -45,20 +45,22 @@ fetch('/quests/questChains.json')
         });
     })
 
+
+//save width value
+var widthTotal = 100;
 window.addEventListener('load', function() {
     onStart()
 })
 function onStart(){
-    var width = 100;
-    var loadInterval= setInterval(deload,10);
+    var loadInterval= setInterval(deload,3);
     function deload(){     
         var bar = document.getElementById("progressBarTotal");
-        width--;
-        bar.style.width = width+'%';
-        if(width == 0 ){
+        widthTotal--;
+        bar.style.width = widthTotal+'%';
+        if(widthTotal == 0 ){
             clearInterval(loadInterval);
         } 
-}
+    }
 }
 function getProgress(index) {
     var currentArc;
@@ -92,7 +94,6 @@ function getProgress(index) {
     var barCurrent = document.getElementById("progressBarCurrent");
     var barTotal = document.getElementById("progressBarTotal");
     var widthCurrent = 0;
-    var widthTotal = 0;
     var percentTotal = percentage(index,quest.length-1);
     var currentInterval = setInterval(sceneCurrent,0);
     var totalInterval = setInterval(sceneTotal, 0);
@@ -109,7 +110,6 @@ function getProgress(index) {
         document.getElementById("percentageCurrent").innerHTML = `${percentCurrent}% through <span class="currentArcColor">${arcName}</span>! ${progressCurrent}`;
         document.getElementById("percentageTotal").innerHTML = `${percentTotal}% through the <span class="msqColor">MSQ</span>! ${index+1}/${quest.length}`;
     }
-
     function sceneCurrent(){
         if(widthCurrent < percentCurrent){
             widthCurrent++;
@@ -120,20 +120,14 @@ function getProgress(index) {
         }
     }
     function sceneTotal() {
-        if(widthTotal < percentTotal){
-            widthTotal++;
-            barTotal.style.width = widthTotal+'%';
-            if(widthTotal == Math.round(percentTotal) || widthTotal == Math.ceil(percentTotal)){
-                clearInterval(totalInterval);
-            } 
-        }
+        if(widthTotal < Math.round(percentTotal)) widthTotal++;
+        if(widthTotal > Math.round(percentTotal)) widthTotal--;
+        barTotal.style.width = widthTotal+'%';
+        if(widthTotal == Math.round(percentTotal) || widthTotal == Math.ceil(percentTotal)) clearInterval(totalInterval);     
     }
 }
 
-
-function percentage(x,y){
-    return (((x+1) * 100)/(y+1)).toFixed(2);
-}
+function percentage(x,y){return (((x+1) * 100)/(y+1)).toFixed(1);}
 function search() {
     var input, filter, ul, li, i, txtValue;
     input = document.getElementById('myInput');
