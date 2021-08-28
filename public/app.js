@@ -63,7 +63,6 @@ function onStart(){
     }
 }
 function getProgress(index) {
-    var currentArc;
     var arcName;
     var percentCurrent;
     var progressCurrent;
@@ -119,9 +118,10 @@ function getProgress(index) {
             }
         }
     }
+
     function sceneTotal() {
         if(widthTotal < Math.round(percentTotal)) widthTotal++;
-        if(widthTotal > Math.round(percentTotal)) widthTotal--;
+        else if(widthTotal > Math.round(percentTotal)) widthTotal--;
         barTotal.style.width = widthTotal+'%';
         if(widthTotal == Math.round(percentTotal) || widthTotal == Math.ceil(percentTotal)) clearInterval(totalInterval);     
     }
@@ -158,10 +158,13 @@ function enter(){
     var re = new RegExp(input,"i");
     //Search for matching quest
     for(i = 0;i<quest.length;i++){
-        //ignore puncuation match and if string is not empty or full of spaces
+        //Search ignore puncuation and check if the string is not empty or full of spaces
         if(quest[i].replace(punc,'').match(re) && !(input.replace(/\s/g,"") == "")){
-            document.getElementById("myInput").value = quest[i];
+            //Autocomplete search bar
+            input= quest[i];
             getProgress(i)
+            //Break otherwise loops through all matching searches
+            break;
         }
     }
 }
