@@ -131,7 +131,7 @@ function percentage(x,y){return (((x+1) * 100)/(y+1)).toFixed(1);}
 function search() {
     var input, filter, ul, li, i, txtValue;
     input = document.getElementById('myInput');
-    filter = input.value;
+    filter = input.value.trim();
     var filterRe = new RegExp(filter,"i")
     ul = document.getElementById("questList");
     li = ul.getElementsByTagName('li');
@@ -154,17 +154,21 @@ function select(input){
 }
 //Sending the form will run getProgress
 function enter(){
-    var input = document.getElementById("myInput").value;
+    var input = document.getElementById("myInput").value.trim();
     var re = new RegExp(input,"i");
     //Search for matching quest
-    for(i = 0;i<quest.length;i++){
-        //Search ignore puncuation and check if the string is not empty or full of spaces
-        if(quest[i].replace(punc,'').match(re) && !(input.replace(/\s/g,"") == "")){
-            //Autocomplete search bar
-            input= quest[i];
-            getProgress(i)
-            //Break otherwise loops through all matching searches
-            break;
+    //Check if input empty
+    if(!(input.replace(/\s/g,"") == "")){
+        for(i = 0;i<quest.length;i++){
+            console.log(input)
+            //Search ignore puncuation
+            if(quest[i].replace(punc,'').match(re)){
+                //Autocomplete search bar
+                input= quest[i];
+                getProgress(i)
+                //Break otherwise loops through all matching searches
+                break;
+            }
         }
     }
 }
