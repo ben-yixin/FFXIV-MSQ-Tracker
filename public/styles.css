@@ -214,14 +214,12 @@ width: 10px;
 
 /* Track */
 ::-webkit-scrollbar-track {
-    border-radius: 4px;
-background: #ffffff6b;
+background: rgba(0, 0, 0, 0.644);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-background: rgb(109, 109, 109);
+background: rgb(158, 158, 158);
 }
 
 /* Handle on hover */
