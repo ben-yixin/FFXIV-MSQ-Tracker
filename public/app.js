@@ -1,7 +1,7 @@
 var quest, aRealmReborn, heavensWard, stormBlood, shadowBringers,endWalker;
 var arrLength, hwLength, sbLength, shbLength, ewLength;
 const punc = new RegExp(/[^\s\w]/g);
-fetch('/quests/questChains.json')
+fetch('./quests/questChains.json')
     .then(response => response.json())
     .then(data=>{
         //Fill quest variables and length variables
@@ -164,7 +164,7 @@ function enter(){
             //Search ignore puncuation
             if(quest[i].replace(punc,'').match(re)){
                 //Autocomplete search bar
-                input= quest[i];
+                document.getElementById("myInput").value = quest[i];
                 getProgress(i)
                 //Break otherwise loops through all matching searches
                 break;
